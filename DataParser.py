@@ -1,4 +1,5 @@
 def Parser(file):
+    #two dictionaries to make ASIN -> Co-Purchase and ASIN -> Product Group
     ASIN2Similar = {}
     ASIN2Group = {}
 
@@ -16,6 +17,7 @@ def Parser(file):
         temp = prod.split("\n")
         temp = [value.split(" ") for value in temp]
 
+        #this is really janky ngl will probably need to take a look at it later TT
         for value in temp:
             if value[0] == "ASIN:":
                 ASIN = value[1]
