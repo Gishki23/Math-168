@@ -15,17 +15,31 @@ def Parser(file):
         Similar = []
 
         temp = prod.split("\n")
-        temp = [value.split(" ") for value in temp]
+        temp = [value.split() for value in temp]
 
-        #this is really janky ngl will probably need to take a look at it later TT
+        #this is a bit better I guess
         for value in temp:
+            if not value:
+                continue
             if value[0] == "ASIN:":
+                if len(value) < 2:
+                    raise Exception("No ASIN specified")
                 ASIN = value[1]
-            elif len(value) >= 6 and value[2] == "similar:":
-                Similar = value[5::2]
-            elif len(value) >= 4 and value[2] == "group:":
-                Group = value[3]
+            elif value[0] == "similar:" and len(value) > 2:
+                Similar = value[2:]
+            elif value[0] == "group:":
+                if len(value) < 2:
+                    raise Exception("No group specified")
+                Group = value[1]
         
+        #removes "discontinued" products
+        if not Group:
+            continue
+
+        #removes products without an co-purchased items
+        if not Similar:
+            continue
+
         ASIN2Similar[ASIN] = Similar
         ASIN2Group[ASIN] = Group
 
