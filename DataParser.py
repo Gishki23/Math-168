@@ -43,6 +43,7 @@ def Parser(file):
         ASIN2Similar[ASIN] = Similar
         ASIN2Group[ASIN] = Group
 
+    #remove products in copurchased list that we have no information on
     for ASIN in ASIN2Similar:
         temp = []
         for prod in ASIN2Similar[ASIN]:
