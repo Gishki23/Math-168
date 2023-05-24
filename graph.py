@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 def CreateGraph():
     G = nx.Graph()
-    Sim, Group = Parser("amazon-meta.txt")
+    Sim, Group = Parser("reduced.txt")
 
     for ASIN in Group:
         G.add_node(ASIN)
@@ -26,6 +26,4 @@ if __name__ == "__main__":
     #validate that this works
     G = CreateGraph()
     print(G.number_of_nodes())
-    r = nx.degree_assortativity_coefficient(G)
-    print(r)
 

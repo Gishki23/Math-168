@@ -43,6 +43,13 @@ def Parser(file):
         ASIN2Similar[ASIN] = Similar
         ASIN2Group[ASIN] = Group
 
+    for ASIN in ASIN2Similar:
+        temp = []
+        for prod in ASIN2Similar[ASIN]:
+            if prod in ASIN2Group:
+                temp.append(prod)
+        ASIN2Similar[ASIN] = temp
+
     return ASIN2Similar, ASIN2Group
 
 
