@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 def CreateGraph():
     G = nx.Graph()
-    Sim, Group = Parser("reduced.txt")
+    Sim, Group = Parser("amazon-meta.txt")
 
     for ASIN in Group:
         G.add_node(ASIN)
